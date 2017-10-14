@@ -24,5 +24,26 @@ module.exports = () => {
         .exec(handler.handleMany.bind(null, 'users', res));
     });
 
+    /* insercionnes */
+    router.post('/',(req,res) =>{
+    //recibir parametros
+    const usuario = req.body;
+
+    user.create(usuario)
+    .then(
+    function(data) {
+        console.log(data);
+        res.json(data);
+    }
+    )
+.catch(
+    function(err){
+        console.log(err);
+        res.status(400);
+        res.json({error:err});
+    }
+);
+    });
+
     return router;
 }
